@@ -21,7 +21,7 @@
     points))
 
 (defn num-neighbors [points p]
-  (count (filter (set points) (point-halo p))))
+  (count (filter (point-halo p) points)))
 
 (defn having-neighbors [points pred ps]
   (filter (comp pred (partial num-neighbors points)) ps))
@@ -86,7 +86,7 @@
            (num-neighbors [points p]
              ; Returns the number of members of points that are among the
              ; eight points surrounding p.
-             (count (filter (set points) (point-halo p))))
+             (count (filter (point-halo p) points)))
 
            (having-neighbors [points pred ps]
              ; Returns a seq of the members of ps, each of whose number of
